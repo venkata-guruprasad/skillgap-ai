@@ -1,6 +1,8 @@
 # Render Blueprint for SkillGap AI FastAPI + AI/ML Backend
-# Note: PyTorch + SentenceTransformers (all-MiniLM-L6-v2) + spaCy require at least 1-2 GB RAM.
-# Render's 512 MB Free tier will OOM; use 'standard' (2 GB RAM) on Render or deploy on Railway/Fly.io (2 GB VM).
+# Configured for Render Free Tier (512 MB RAM, $0/mo, no credit card) using
+# lightweight TF-IDF semantic fallback + spaCy + trained 12-role Scikit-learn model.
+# To enable full PyTorch + all-MiniLM-L6-v2 embeddings on a paid 2 GB Standard plan,
+# set plan: standard, build arg INSTALL_MINILM=true, and ENABLE_SENTENCE_TRANSFORMERS=true.
 
 services:
   - type: web
@@ -8,28 +10,26 @@ services:
     runtime: docker
     rootDir: backend
     dockerfilePath: ./Dockerfile
-    plan: standard
+    plan: free
     healthCheckPath: /api/health
     autoDeploy: true
-    disk:
-      name: skillgap-uploads
-      mountPath: /data/uploads
-      sizeGB: 5
     envVars:
       - key: APP_ENV
         value: production
       - key: DEBUG
         value: "false"
       - key: ENABLE_API_DOCS
-        value: "false"
+        value: "true"
       - key: ENABLE_LOCAL_SQLITE_FALLBACK
         value: "false"
+      - key: ENABLE_SENTENCE_TRANSFORMERS
+        value: "false"
       - key: UPLOAD_DIR
-        value: /data/uploads
+        value: /tmp/skillgap_uploads
       - key: UVICORN_WORKERS
         value: "1"
       - key: DATABASE_URL
-        sync: false # Set in Render dashboard from Neon or Supabase PostgreSQL URI (?sslmode=require)
+        sync: false # Set in Render dashboard from Neon PostgreSQL URI (?sslmode=require)
       - key: SECRET_KEY
         generateValue: true
       - key: ACCESS_TOKEN_EXPIRE_MINUTES

@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 set -eu
 
+mkdir -p "${UPLOAD_DIR:-/tmp/skillgap_uploads}"
+
 # Run Alembic migrations automatically when PostgreSQL is configured
 if [ -n "${DATABASE_URL:-}" ] || [ -n "${POSTGRES_HOST:-}" ]; then
   echo "[entrypoint] Applying Alembic database migrations..."
