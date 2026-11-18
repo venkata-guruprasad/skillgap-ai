@@ -1,0 +1,29 @@
+# --- Web Framework & Server ---
+fastapi>=0.115.0
+uvicorn[standard]>=0.34.0
+python-multipart>=0.0.20
+
+# --- Validation, Configuration & Auth ---
+pydantic>=2.10.0
+pydantic-settings>=2.7.0
+python-dotenv>=1.0.1
+PyJWT>=2.10.0
+
+# --- Database & Migrations ---
+SQLAlchemy>=2.0.38
+psycopg2-binary>=2.9.11
+alembic>=1.14.1
+
+# --- Resume Processing, NLP & Semantic Matching (Phases 4 & 5) ---
+PyMuPDF>=1.25.0
+python-docx>=1.1.2
+spacy>=3.8.0
+nltk>=3.9.1
+sentence-transformers>=3.4.0
+scikit-learn>=1.6.0
+joblib>=1.4.0
+numpy>=1.26.0
+
+# --- Testing ---
+pytest>=8.3.0
+httpx>=0.28.0

@@ -1,0 +1,9 @@
+# --- AI/ML & NLP Dependencies (Phase 2+) ---
+# Install with CPU PyTorch to avoid large CUDA downloads when GPU is not needed:
+# pip install -r requirements-ml.txt
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+scikit-learn>=1.6.0
+nltk>=3.9.1
+spacy>=3.8.0
+sentence-transformers>=3.4.0
