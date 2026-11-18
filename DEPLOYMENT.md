@@ -103,7 +103,7 @@ SkillGap AI runs **PyTorch + `sentence-transformers/all-MiniLM-L6-v2` + `spaCy e
 
 1. In Vercel Dashboard -> **Add New Project** -> import your GitHub repository.
 2. Configure Build Settings:
-   - **Root Directory**: `skillgap-ai/frontend`
+   - **Root Directory**: `frontend`
    - **Framework Preset**: `Vite` (auto-detected via `frontend/vercel.json`)
    - **Build Command**: `npm run build`
    - **Output Directory**: `dist`

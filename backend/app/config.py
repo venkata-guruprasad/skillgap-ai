@@ -82,6 +82,9 @@ class Settings(BaseSettings):
     MAX_UPLOAD_SIZE_BYTES: int = 5 * 1024 * 1024  # 5 MB strict limit
     UPLOAD_DIR: str = str(PROJECT_ROOT / "data" / "uploads")
 
+    # Semantic Embedding Toggle (keep true on >= 1-2 GB RAM; set false on 512 MB free tiers for TF-IDF fallback)
+    ENABLE_SENTENCE_TRANSFORMERS: bool = True
+
     @field_validator("POSTGRES_PORT", mode="before")
     @classmethod
     def parse_port(cls, value: object) -> int:

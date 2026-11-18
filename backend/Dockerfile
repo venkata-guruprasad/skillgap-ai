@@ -16,6 +16,7 @@ RUN apt-get update \
 
 COPY requirements.txt ./
 RUN pip install --upgrade pip \
+    && pip install --index-url https://download.pytorch.org/whl/cpu torch \
     && pip install -r requirements.txt \
     && python -m spacy download en_core_web_sm \
     && mkdir -p "${HF_HOME}" "${NLTK_DATA}" /data/uploads "${MODEL_DIR}" \

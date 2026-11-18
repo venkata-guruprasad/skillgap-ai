@@ -38,6 +38,12 @@ class SkillMatchOutcome:
 @lru_cache(maxsize=1)
 def load_embedding_model(model_name: str = DEFAULT_MODEL_NAME):
     """Lazily load and cache SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')."""
+    from app.config import settings
+
+    if not settings.ENABLE_SENTENCE_TRANSFORMERS:
+        logger.info("ENABLE_SENTENCE_TRANSFORMERS=false; using lightweight TF-IDF cosine similarity.")
+        return None, "tfidf-lightweight"
+
     try:
         from sentence_transformers import SentenceTransformer
 
